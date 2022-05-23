@@ -3,8 +3,8 @@ test task for WelbeX
 
 **Используемый стек:** 
 
-backend: Express js, Postgresql, Sequalize, Swagger
-frontend: React, Redux, Axios
+backend: Express js, Postgresql, Sequalize, Swagger; 
+frontend: React, Redux, Axios;
 
 **Требования к заданию:**
 

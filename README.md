@@ -1,6 +1,12 @@
 # WelbeX_test_task
 test task for WelbeX
 
+**Используемый стек** 
+{
+backend: Express js, Postgresql, Sequalize, Swagger
+frontend: React, Redux, Axios
+}
+
 **Требования к заданию:**
 
 Приложение представляет собой страницу, на которой могут делать записи любые авторизованные пользователи. 

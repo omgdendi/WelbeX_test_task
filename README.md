@@ -1,11 +1,10 @@
 # WelbeX_test_task
 test task for WelbeX
 
-**Используемый стек** 
-{
+**Используемый стек:** 
+
 backend: Express js, Postgresql, Sequalize, Swagger
 frontend: React, Redux, Axios
-}
 
 **Требования к заданию:**
 

@@ -47,13 +47,6 @@ class authController {
             next(e);
         }
     }
-    async getUsers(req, res, next) {
-        try {
-            res.json('server worked')
-        } catch (e) {
-            next(e);
-        }
-    }
 }
 
 module.exports = new authController();

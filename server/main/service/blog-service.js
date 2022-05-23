@@ -1,6 +1,7 @@
 const tokenService = require("./token-service");
 const {BlogModel} = require("../models/models");
 const BlogDTO = require("../dtos/blog-dto");
+const BlogError = require("../exceptions/blog-error");
 
 class BlogService {
     async create(req) {
@@ -30,7 +31,7 @@ class BlogService {
         const blog = await BlogModel.findOne({where: {id}});
 
         if (userId !== blog.userId) {
-            throw new Error('Попытка удалить непринадлежащий пользователю блог');
+            throw BlogError.DeletingNotOwnedBlog();
         }
         await BlogModel.destroy({where: {id}});
     }

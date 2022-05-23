@@ -8,8 +8,8 @@ module.exports = class BlogError extends Error {
         this.errors = errors;
     }
 
-    static DeletingNotOwnedBlog() {
-        return new BlogError(409, "Попытка удалить непринадлежащий пользователю блог")
+    static ChangingNotOwnedBlog() {
+        return new BlogError(409, "Try to change not owned blog")
     }
 
     static BadRequest(message, errors = []) {

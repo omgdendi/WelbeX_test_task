@@ -1,30 +1,41 @@
 const BlogService = require("../service/blog-service");
 
 class BlogController {
-    async create (req, res) {
+    async create (req, res, next) {
         try {
             const blog = await BlogService.create(req);
             res.json(blog);
         } catch (e) {
-            res.status(500).json(e);
+            next(e);
         }
     }
 
-    async getAll (req, res) {
+    async getAll (req, res, next) {
         try {
             const blogs = await BlogService.getAll(req);
             return res.json(blogs);
         } catch (e) {
-            res.status(500).json(e);
+            next(e);
         }
     }
 
-    async delete (req, res) {
+    async delete (req, res, next) {
         try {
+            const id = req.params.id;
             await BlogService.delete(req, req.params.id);
-            return res.json("Блог успешно удален");
+            return res.json(`Блог (id - ${id}) успешно обновлен`);
         } catch (e) {
-            res.status(500).json(e);
+            next(e);
+        }
+    }
+
+    async update (req, res, next) {
+        try {
+            const id = req.params.id;
+            await BlogService.update(req, id);
+            return res.json(`Блог (id - ${id}) успешно обновлен`)
+        } catch (e) {
+            next(e);
         }
     }
 }

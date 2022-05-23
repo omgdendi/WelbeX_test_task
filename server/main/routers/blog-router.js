@@ -106,4 +106,37 @@ blogRouter.get('/blogs', authMiddleware, BlogController.getAll);
 
 blogRouter.delete('/blogs/:id', authMiddleware, BlogController.delete);
 
+
+/**
+ * @swagger
+ * /books/{id}:
+ *  put:
+ *    security:
+ *      - bearerAuth: []
+ *    summary: Update the blog by the id
+ *    tags: [Blogs]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The blog id
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Blog'
+ *    responses:
+ *      200:
+ *        description: The blog was updated
+ *      404:
+ *        description: The blog was not found
+ *      500:
+ *        description: Some error happened
+ */
+
+blogRouter.put('/blogs/:id', authMiddleware, BlogController.update);
+
 module.exports = blogRouter;

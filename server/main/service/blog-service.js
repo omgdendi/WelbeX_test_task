@@ -31,10 +31,26 @@ class BlogService {
         const blog = await BlogModel.findOne({where: {id}});
 
         if (userId !== blog.userId) {
-            throw BlogError.DeletingNotOwnedBlog();
+            throw BlogError.ChangingNotOwnedBlog();
         }
         await BlogModel.destroy({where: {id}});
     }
+
+    async update(req, id) {
+        const token = req.headers.authorization.split(' ')[1];
+        const body = req.body;
+        const message = body.message;
+        const userData = tokenService.validateAccessToken(token);
+        const userId = userData.id;
+        const blog = await BlogModel.findOne({where: {id}});
+        if (userId !== blog.userId) {
+            throw BlogError.ChangingNotOwnedBlog();
+        }
+        await BlogModel.update({message}, {where: {id}});
+        const blogDto = new BlogDTO(blog);
+        return blogDto;
+    }
+
 }
 
 module.exports = new BlogService();

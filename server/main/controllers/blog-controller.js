@@ -1,7 +1,10 @@
+const BlogService = require("../service/blog-service");
+
 class BlogController {
     async create (req, res) {
         try {
-            //todo
+            const blog = await BlogService.create(req);
+            res.json(blog);
         } catch (e) {
             res.status(500).json(e);
         }
@@ -9,7 +12,8 @@ class BlogController {
 
     async getAll (req, res) {
         try {
-            //todo
+            const blogs = await BlogService.getAll(req);
+            return res.json(blogs);
         } catch (e) {
             res.status(500).json(e);
         }
@@ -17,7 +21,8 @@ class BlogController {
 
     async delete (req, res) {
         try {
-            //todo
+            await BlogService.delete(req, req.params.id);
+            return res.json("Блог успешно удален");
         } catch (e) {
             res.status(500).json(e);
         }

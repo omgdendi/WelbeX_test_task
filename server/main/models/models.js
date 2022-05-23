@@ -19,7 +19,6 @@ const TokenModel = sequelize.define("token", {
 
 const BlogModel = sequelize.define("blog", {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    date: {type: DataTypes.DATE, required: true},
     message: {type: DataTypes.STRING, required: true}
 });
 

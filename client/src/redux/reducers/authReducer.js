@@ -1,6 +1,7 @@
 import {AuthAPI} from "../../api/AuthAPI";
 import axios from "axios";
 import {API_URL} from "../../http/http";
+import {getBlogs} from "./blogsReducer";
 
 const SET_AUTH = "SET_AUTH";
 const SET_USER = "SET_USER";
@@ -77,7 +78,7 @@ export const login = (username, password) => (dispatch) => {
                 localStorage.setItem('token', response.data.userData.accessToken);
                 dispatch(setAuth(true));
                 dispatch(setUser(response.data.userData.user));
-                //dispatch(getDots());
+                dispatch(getBlogs());
             }
         })
         .catch(error => {
@@ -95,7 +96,7 @@ export const registration = (username, password) => (dispatch) => {
             localStorage.setItem('token', response.data.userData.accessToken);
             dispatch(setAuth(true));
             dispatch(setUser(response.data.userData.user));
-            //dispatch(getDots());
+            dispatch(getBlogs());
         })
         .catch(error => {
             dispatch(setErrorMessage(error.response.data.message));
@@ -125,7 +126,7 @@ export const checkAuth = () => (dispatch) => {
                 localStorage.setItem('token', response.data.tokens.accessToken);
                 dispatch(setAuth(true));
                 dispatch(setUser(response.data.tokens.user));
-                //dispatch(getDots());
+                dispatch(getBlogs());
             }
         )
         .catch(error => {

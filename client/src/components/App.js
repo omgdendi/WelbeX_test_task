@@ -24,13 +24,13 @@ const App = (props) => {
       <div>
         <HeaderContainer/>
         <Switch>
-          <Route exact path={"/web-lab/login"}>
+          <Route exact path={"/api/login"}>
             <AuthContent/>
           </Route>
-          <Route exact path={"/web-lab/registration"}>
+          <Route exact path={"/api/registration"}>
             <AuthContent/>
           </Route>
-          <Redirect from={"*"} to={"/web-lab/login"} />
+          <Redirect from={"*"} to={"/api/login"} />
         </Switch>
       </div>
   )
@@ -38,10 +38,10 @@ const App = (props) => {
       <div>
         <HeaderContainer/>
         <Switch>
-          <Route path="/web-lab/main">
+          <Route path="/api/main">
             <MainContent/>
           </Route>
-          <Redirect from={"*"} to={"/web-lab/main"} />
+          <Redirect from={"*"} to={"/api/main"} />
         </Switch>
       </div>
   );

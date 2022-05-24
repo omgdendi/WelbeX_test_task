@@ -42,9 +42,9 @@ const Login = (props) => {
             </div>
             <div className={styles.actions}>
                  <span className={styles.link} onClick={toRegister}>
-                     <Link to="/web-lab/registration">Нет аккаунта?</Link>
+                     <Link to="/api/registration">Нет аккаунта?</Link>
                  </span>
-                <Link to={"/web-lab/main"}>
+                <Link to={"/api/main"}>
                     <button onClick={() => props.login(login, password)}>Войти</button>
                 </Link>
             </div>

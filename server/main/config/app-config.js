@@ -17,8 +17,9 @@ module.exports = appConfig = (app) => {
         credentials: true,
         origin: process.env.CLIENT_URL
     }));
-    app.use(express.static(path.resolve(__dirname, 'static')))
-    app.use(fileUpload({}))
+    app.use(express.static(path.resolve("main", 'static/images')));
+    app.use(express.static(path.resolve("main", 'static/video')));
+    app.use(fileUpload({}));
     app.use(cookieParser());
     app.use('/api', blogRouter);
     app.use('/api/auth', authRouter);

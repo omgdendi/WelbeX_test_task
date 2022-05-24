@@ -1,20 +1,24 @@
 const tokenService = require("./token-service");
 const BlogDTO = require("../dtos/blog-dto");
 const BlogError = require("../exceptions/blog-error");
-const {BlogModel} = require("../models/models");
+const {BlogModel, UserModel} = require("../models/models");
 const uuid = require('uuid');
 const path = require('path');
+const {use} = require("express/lib/router");
 
 class BlogService {
     async create(req) {
         const token = req.headers.authorization.split(' ')[1];
         const body = req.body;
         const message = body.message;
-        const {img} = req.files;
-        let fileName = uuid.v4() + ".jpg"
-        img.mv(path.resolve(__dirname, '..', 'static', fileName))
+        const {img, video} = req.files;
+        let imageFileName = uuid.v4() + ".jpg";
+        //todo сделать проверку на типы и разрешить null-значения
+        img.mv(path.resolve(__dirname, '..', 'static/images', imageFileName));
+        let videoFileName = uuid.v4() + ".mp4";
+        video.mv(path.resolve(__dirname, '..', 'static/video', videoFileName));
         const userData = tokenService.validateAccessToken(token);
-        const blog = await BlogModel.create({message, userId: userData.id, img: fileName});
+        const blog = await BlogModel.create({message, userId: userData.id, img: imageFileName, video: videoFileName});
         const blogDto = new BlogDTO(blog);
         return blogDto;
     }

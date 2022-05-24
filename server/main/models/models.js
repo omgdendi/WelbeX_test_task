@@ -20,9 +20,9 @@ const TokenModel = sequelize.define("token", {
 const BlogModel = sequelize.define("blog", {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     message: {type: DataTypes.STRING, required: true},
-    img: {type: DataTypes.STRING}
+    img: {type: DataTypes.STRING},
+    video: {type: DataTypes.STRING}
 });
-
 
 UserModel.hasOne(TokenModel);
 TokenModel.belongsTo(UserModel);

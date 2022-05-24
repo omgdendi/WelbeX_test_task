@@ -122,7 +122,7 @@ authRouter.post('/logout', AuthController.logout);
 
 /**
  * @swagger
- * /refresh:
+ * /auth/refresh:
  *   get:
  *     security:
  *       - bearerAuth: []
@@ -135,6 +135,8 @@ authRouter.post('/logout', AuthController.logout);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Token'
+ *       401:
+ *          description: User not authorized
  */
 
 authRouter.get('/refresh', AuthController.refresh);

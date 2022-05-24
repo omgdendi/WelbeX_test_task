@@ -1,6 +1,6 @@
 const Router = require("express");
 const BlogController = require("../controllers/blog-controller");
-const authMiddleware = require("../middleware/auth-middleware")
+const authMiddleware = require("../middleware/auth-middleware");
 const {check} = require("express-validator");
 
 const blogRouter = new Router();
@@ -11,8 +11,6 @@ const blogRouter = new Router();
  *   schemas:
  *     Blog:
  *       type: object
- *       required:
- *         - message
  *       properties:
  *         id:
  *           type: int
@@ -23,10 +21,22 @@ const blogRouter = new Router();
  *         userId:
  *           type: int
  *           description: Ref to user
+ *         createdAt:
+ *           type: date
+ *           description: Blog created date
+ *         img:
+ *           type: string
+ *           description: File name of image
+ *         video:
+ *           type: string
+ *           description: File name of video
  *       example:
  *         id: 1
  *         message: hello world!
  *         userId: 1
+ *         createdAt: 2022-05-24T13:38:29.090Z
+ *         img: a8d6759d-9031-404c-9f51-857c60daa21c.jpg
+ *         video: bff4964f-3a2f-4ec6-bf9d-1e4f879fb824.mp4
  */
 
 /**
@@ -110,11 +120,11 @@ blogRouter.delete('/blogs/:id', authMiddleware, BlogController.delete);
 
 /**
  * @swagger
- * /books/{id}:
+ * /blogs/{id}:
  *  put:
  *    security:
  *      - bearerAuth: []
- *    summary: Update the blog by the id
+ *    summary: Update the blog by id
  *    tags: [Blogs]
  *    parameters:
  *      - in: path
@@ -139,5 +149,31 @@ blogRouter.delete('/blogs/:id', authMiddleware, BlogController.delete);
  */
 
 blogRouter.put('/blogs/:id', authMiddleware, BlogController.update);
+
+
+/**
+ * @swagger
+ * /blogs/{id}:
+ *   get:
+ *     security:
+ *       - bearerAuth: []
+ *     summary: Returns the blog by id
+ *     tags: [Blogs]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The blog id
+ *     responses:
+ *       200:
+ *         description: Blog
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Blog'
+ */
+blogRouter.get('/blogs/:id', authMiddleware, BlogController.getOne);
 
 module.exports = blogRouter;

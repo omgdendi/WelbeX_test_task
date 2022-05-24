@@ -19,6 +19,15 @@ class BlogController {
         }
     }
 
+    async getOne (req, res, next) {
+        try {
+            const blog = await BlogService.getOne(req, req.params.id);
+            return res.json(blog);
+        } catch (e) {
+            next(e);
+        }
+    }
+
     async delete (req, res, next) {
         try {
             const id = req.params.id;

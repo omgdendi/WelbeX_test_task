@@ -37,6 +37,9 @@ class BlogService {
 
     async getOne(req, id) {
         const blog = await BlogModel.findOne({where: {id}});
+        if (!blog) {
+            throw BlogError.BlogNotFound();
+        }
         return new BlogDTO(blog);
     }
 

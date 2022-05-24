@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 const blogRouter = require("../routers/blog-router");
 const authRouter = require("../routers/auth-router");
 const errorMiddleware = require("../middleware/error-middleware");
+const router = require("../routers/base-router");
 
 module.exports = appConfig = (app) => {
     app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
@@ -21,8 +22,7 @@ module.exports = appConfig = (app) => {
     app.use(express.static(path.resolve("main", 'static/video')));
     app.use(fileUpload({}));
     app.use(cookieParser());
-    app.use('/api', blogRouter);
-    app.use('/api/auth', authRouter);
+    app.use('/api', router)
     app.use(errorMiddleware);
     return app;
 }

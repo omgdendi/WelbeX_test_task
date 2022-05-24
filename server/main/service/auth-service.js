@@ -7,6 +7,9 @@ const {UserModel, RoleModel} = require("../models/models");
 class AuthService {
     async registration(user) {
         const {username, password} = user;
+        if (!username || !password) {
+            throw ApiError.BadRequest("Missing required fields");
+        }
         const condidate = await UserModel.findOne({where: {username}})
         if (condidate) {
             throw ApiError.BadRequest("Пользователь с таким именем уже существует");
@@ -25,6 +28,9 @@ class AuthService {
 
     async login(user) {
         const {username, password} = user;
+        if (!username || !password) {
+            throw ApiError.BadRequest("Missing required fields");
+        }
         const condidate = await UserModel.findOne({where: {username: username}})
         if (!condidate) {
             throw ApiError.BadRequest("Пользователь не найден");

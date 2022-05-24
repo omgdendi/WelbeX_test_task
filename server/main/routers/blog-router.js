@@ -1,6 +1,7 @@
 const Router = require("express");
 const BlogController = require("../controllers/blog-controller");
 const authMiddleware = require("../middleware/auth-middleware")
+const {check} = require("express-validator");
 
 const blogRouter = new Router();
 

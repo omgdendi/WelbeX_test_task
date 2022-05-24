@@ -11,6 +11,10 @@ class BlogService {
         const token = req.headers.authorization.split(' ')[1];
         const body = req.body;
         const message = body.message;
+
+        if (!body.message && !req.files) {
+            throw BlogError.BadRequest("missing fields");
+        }
         let imageFileName = null;
         let videoFileName = null;
         if (req.files) {
@@ -29,6 +33,11 @@ class BlogService {
         const blogs = await BlogModel.findAll();
         const blogsDto = blogs.map(blog => new BlogDTO(blog));
         return blogsDto;
+    }
+
+    async getOne(req, id) {
+        const blog = await BlogModel.findOne({where: {id}});
+        return new BlogDTO(blog);
     }
 
     async delete(req, id) {

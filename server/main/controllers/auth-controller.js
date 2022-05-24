@@ -47,6 +47,15 @@ class authController {
             next(e);
         }
     }
+
+    async getUserById(req, res, next) {
+        try {
+            const user = await AuthService.getUserById(req.params.id);
+            res.json(user)
+        } catch (e) {
+            next(e);
+        }
+    }
 }
 
 module.exports = new authController();

@@ -12,7 +12,7 @@ class AuthService {
         }
         const condidate = await UserModel.findOne({where: {username}})
         if (condidate) {
-            throw ApiError.BadRequest("Пользователь с таким именем уже существует");
+            throw ApiError.BadRequest("User with the same name already exists");
         }
         const hashPassword = bcrypt.hashSync(password, 7);
         const userRole = await RoleModel.findOne({where: {value: "USER"}});
@@ -33,11 +33,11 @@ class AuthService {
         }
         const condidate = await UserModel.findOne({where: {username: username}})
         if (!condidate) {
-            throw ApiError.BadRequest("Пользователь не найден");
+            throw ApiError.UserNotFound();
         }
         const validatePassword = bcrypt.compareSync(password, condidate.password);
         if (!validatePassword) {
-            throw ApiError.BadRequest("Неверный пароль");
+            throw ApiError.BadRequest("Wrong password");
         }
         const userDto = new UserDTO(condidate);
         const tokens = tokenService.generateTokens({id: userDto.id});
@@ -72,6 +72,14 @@ class AuthService {
             refreshToken: tokens.refreshToken
         };
     };
+
+    async getUserById(id) {
+        const user = await UserModel.findOne({where: {id}});
+        if (!user) {
+            throw new ApiError.UserNotFound();
+        }
+        return new UserDTO(user);
+    }
 };
 
 module.exports = new AuthService();

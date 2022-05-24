@@ -1,6 +1,7 @@
 const {check, body} = require("express-validator");
 const AuthController = require("../controllers/auth-controller");
 const Router = require("express");
+const authMiddleware = require("../middleware/auth-middleware");
 
 /**
  * @swagger
@@ -140,6 +141,5 @@ authRouter.post('/logout', AuthController.logout);
  */
 
 authRouter.get('/refresh', AuthController.refresh);
-
 
 module.exports = authRouter;

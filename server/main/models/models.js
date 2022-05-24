@@ -1,4 +1,4 @@
-const sequelize = require("../db");
+const sequelize = require("../config/db-config");
 const {DataTypes} = require("sequelize");
 
 const UserModel = sequelize.define("user", {
@@ -19,7 +19,8 @@ const TokenModel = sequelize.define("token", {
 
 const BlogModel = sequelize.define("blog", {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    message: {type: DataTypes.STRING, required: true}
+    message: {type: DataTypes.STRING, required: true},
+    img: {type: DataTypes.STRING}
 });
 
 

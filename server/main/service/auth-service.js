@@ -1,9 +1,8 @@
-const {UserModel} = require("../models/models");
 const bcrypt = require("bcryptjs");
-const {RoleModel} = require("../models/models");
 const tokenService = require("./token-service");
 const ApiError = require("../exceptions/api-error");
 const UserDTO = require("../dtos/user-dto");
+const {UserModel, RoleModel} = require("../models/models");
 
 class AuthService {
     async registration(user) {

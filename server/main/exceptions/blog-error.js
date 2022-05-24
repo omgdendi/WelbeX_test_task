@@ -9,7 +9,15 @@ module.exports = class BlogError extends Error {
     }
 
     static ChangingNotOwnedBlog() {
-        return new BlogError(409, "Try to change not owned blog")
+        return new BlogError(409, "Try to change not owned blog");
+    }
+
+    static BlogNotFound() {
+        return new BlogError(404, "Blog not found");
+    }
+
+    static NotSupportedFormat() {
+        return new BlogError(422, "Format of file is not supported")
     }
 
     static BadRequest(message, errors = []) {

@@ -9,7 +9,7 @@ module.exports = class BlogDTO {
     img;
     video;
 
-    constructor(model, user) {
+    constructor(model) {
         this.id = model.id;
         this.message = model.message;
         this.createdAt = model.createdAt;

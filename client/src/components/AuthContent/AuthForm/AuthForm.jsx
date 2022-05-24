@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import styles from "./AuthForm.module.scss";
 import LoginContainer from "./Login/LoginContainer";
 import RegisterContainer from "./Register/RegisterContainer";

@@ -3,7 +3,8 @@ import BlogList from "./BlogList";
 
 const mapStateToProps = (state) => {
     return {
-        blogs: state.blogs.blogs
+        blogs: state.blogs.blogs,
+        user: state.auth.user
     };
 }
 

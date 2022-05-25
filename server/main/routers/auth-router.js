@@ -15,7 +15,7 @@ const authMiddleware = require("../middleware/auth-middleware");
  *       properties:
  *         id:
  *           type: int
- *           description: The auto-generated id of the book
+ *           description: The auto-generated id of the user
  *         username:
  *           type: string
  *           description: Username for user
@@ -32,7 +32,7 @@ const authMiddleware = require("../middleware/auth-middleware");
  *       properties:
  *         id:
  *           type: int
- *           description: The auto-generated id of the book
+ *           description: The auto-generated id of the token
  *         refreshToken:
  *           type: string
  *           description: refresh token for user
@@ -69,8 +69,12 @@ const authRouter = new Router();
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
- *       500:
- *         description: Some server error
+ *       400:
+ *         description: Missing fields
+ *       409:
+ *         description: User already exist
+ *       400:
+ *         description: Missing fields
  */
 
 authRouter.post('/registration', [
@@ -98,8 +102,12 @@ authRouter.post('/registration', [
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
- *       500:
- *         description: Some server error
+ *       400:
+ *         description: Missing fields
+ *       404:
+ *         description: User not found
+ *       418:
+ *         description: Wrong password
  */
 
 authRouter.post('/login', AuthController.login);
@@ -115,8 +123,6 @@ authRouter.post('/login', AuthController.login);
  *     responses:
  *       200:
  *         description: The user was successfully logged out
- *       500:
- *         description: Some server error
  */
 
 authRouter.post('/logout', AuthController.logout);

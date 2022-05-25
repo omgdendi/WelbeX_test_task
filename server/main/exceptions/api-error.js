@@ -12,6 +12,14 @@ module.exports = class ApiError extends Error {
         return new ApiError(401, "User not authorized");
     }
 
+    static UserAlreadyExist() {
+        return new ApiError(409, "User already exist");
+    }
+
+    static WrongPassword() {
+        return new ApiError(418, "Wrong password");
+    }
+
     static UserNotFound() {
         return new ApiError(404, "User not found");
     }

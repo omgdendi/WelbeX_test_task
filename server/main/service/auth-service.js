@@ -12,7 +12,7 @@ class AuthService {
         }
         const condidate = await UserModel.findOne({where: {username}})
         if (condidate) {
-            throw ApiError.BadRequest("User with the same name already exists");
+            throw ApiError.UserAlreadyExist();
         }
         const hashPassword = bcrypt.hashSync(password, 7);
         const userRole = await RoleModel.findOne({where: {value: "USER"}});

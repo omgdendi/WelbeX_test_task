@@ -14,7 +14,7 @@ const blogRouter = new Router();
  *       properties:
  *         id:
  *           type: int
- *           description: The auto-generated id of the book
+ *           description: The auto-generated id of the blog
  *         message:
  *           type: string
  *           description: The blog message
@@ -65,8 +65,12 @@ const blogRouter = new Router();
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Blog'
- *       500:
- *         description: Some server error
+ *       422:
+ *         description: Not supported format
+ *       400:
+ *         description: Missing fields
+ *       401:
+ *          description: User not authorized
  */
 
 blogRouter.post('/blog', authMiddleware, BlogController.create);
@@ -88,6 +92,8 @@ blogRouter.post('/blog', authMiddleware, BlogController.create);
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Blog'
+ *       401:
+ *          description: User not authorized
  */
 blogRouter.get('/blogs', authMiddleware, BlogController.getAll);
 
@@ -113,6 +119,8 @@ blogRouter.get('/blogs', authMiddleware, BlogController.getAll);
  *         description: The blog was deleted
  *       404:
  *         description: The blog was not found
+ *       401:
+ *          description: User not authorized
  */
 
 blogRouter.delete('/blogs/:id', authMiddleware, BlogController.delete);
@@ -144,8 +152,8 @@ blogRouter.delete('/blogs/:id', authMiddleware, BlogController.delete);
  *        description: The blog was updated
  *      404:
  *        description: The blog was not found
- *      500:
- *        description: Some error happened
+ *      401:
+ *        description: User not authorized
  */
 
 blogRouter.put('/blogs/:id', authMiddleware, BlogController.update);
@@ -173,6 +181,8 @@ blogRouter.put('/blogs/:id', authMiddleware, BlogController.update);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Blog'
+ *       401:
+ *          description: User not authorized
  */
 blogRouter.get('/blogs/:id', authMiddleware, BlogController.getOne);
 

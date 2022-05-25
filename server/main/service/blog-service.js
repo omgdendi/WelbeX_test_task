@@ -105,7 +105,7 @@ class BlogService {
         }
         if (video) {
             let type = video.name.split('.').pop();
-            if (type === "mp3" || type === "mp4") {
+            if (type === "mp4") {
                 videoFileName = uuid.v4() + "." + type;
             } else {
                 throw BlogError.NotSupportedFormat();

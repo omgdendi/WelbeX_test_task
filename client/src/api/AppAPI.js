@@ -1,4 +1,4 @@
-import $api from "../http/http";
+import $api, {$apiFile} from "../http/http";
 
 export const AppAPI = {
     async getUser(id) {

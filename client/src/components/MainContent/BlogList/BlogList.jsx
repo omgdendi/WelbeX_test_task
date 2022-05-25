@@ -9,7 +9,8 @@ const BlogList = (props) => {
                 <div className={styles.name}>
                     <span>Мои посты</span>
                 </div>
-                {props.blogs.filter(blog => blog.author === props.user.id).map(blog => <Blog key={blog.id}
+                {props.blogs
+                    .filter(blog => blog.author === props.user.id).reverse().map(blog => <Blog key={blog.id}
                                                                                          id={blog.id}
                                                                                          message={blog?.message}
                                                                                          createdAt={blog.createdAt}
@@ -17,6 +18,10 @@ const BlogList = (props) => {
                                                                                          img={blog.img}
                                                                                          video={blog.video}
                                                                                          deleteBlog={props.deleteBlog}
+                                                                                         setShowDialog={props.setShowDialog}
+                                                                                         setOpenSettings={props.setOpenSettings}
+                                                                                         setCurrentMessage={props.setCurrentMessage}
+                                                                                         setCurrentId={props.setCurrentId}
                                                                                          isMyBlog={true}
                 />)}
             </div>
@@ -24,7 +29,7 @@ const BlogList = (props) => {
                 <div className={styles.name}>
                     <span>Чужие посты</span>
                 </div>
-                {props.blogs.filter(blog => blog.author !== props.user.id).map(blog => <Blog key={blog.id}
+                {props.blogs.filter(blog => blog.author !== props.user.id).reverse().map(blog => <Blog key={blog.id}
                                                                                          id={blog.id}
                                                                                          message={blog.message}
                                                                                          createdAt={blog.createdAt}

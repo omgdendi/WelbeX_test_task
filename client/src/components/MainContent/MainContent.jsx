@@ -2,17 +2,15 @@ import React, {useState} from 'react';
 import BlogListContainer from "./BlogList/BlogListContainer";
 import styles from "./MainContent.module.scss";
 import Dialog from "./Dialog/Dialog";
+import DialogContainer from "./Dialog/DialogContainer";
 
-const MainContent = () => {
-    const [show, setShow] = useState(false);
-
-
+const MainContent = (props) => {
     return (
         <div className={styles.content}>
             <div>
-                <div className={styles.create} onClick={() => setShow(true)}>Создать пост</div>
+                <div className={styles.create} onClick={() => props.setShowDialog(true)}>Создать пост</div>
             </div>
-            {show ? <Dialog setShow={setShow}/> : null}
+            {props.isShowDialog ? <DialogContainer /> : null}
             <BlogListContainer/>
         </div>
     );

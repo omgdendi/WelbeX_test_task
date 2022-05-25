@@ -3,7 +3,7 @@ import {useEffect} from "react";
 import HeaderContainer from "./Header/HeaderContainer";
 import Preloader from "./Preloader/Preloader";
 import AuthContent from "./AuthContent/AuthContent";
-import MainContent from "./MainContent/MainContent";
+import MainContentContainer from "./MainContent/MainContentContainer";
 
 const App = (props) => {
   useEffect(() => {
@@ -39,7 +39,7 @@ const App = (props) => {
         <HeaderContainer/>
         <Switch>
           <Route path="/api/main">
-            <MainContent/>
+            <MainContentContainer/>
           </Route>
           <Redirect from={"*"} to={"/api/main"} />
         </Switch>

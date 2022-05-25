@@ -1,4 +1,4 @@
-import $api from "../http/http";
+import $api, {$apiFile} from "../http/http";
 
 export const BlogAPI = {
     async getBlogs() {
@@ -9,7 +9,11 @@ export const BlogAPI = {
         return $api.delete(`blogs/${id}`);
     },
 
-    async addBlog(blog) {
-        return $api.post('blog', blog);
+    async addBlog(formData) {
+        return $apiFile.post("blog", formData);
+    },
+
+    async updateBlog(formData, id) {
+        return $apiFile.put(`blogs/${id}`, formData);
     }
 }

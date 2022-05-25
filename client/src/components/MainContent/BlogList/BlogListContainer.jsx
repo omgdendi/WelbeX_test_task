@@ -1,6 +1,12 @@
 import {connect} from "react-redux";
 import BlogList from "./BlogList";
-import {deleteBlog} from "../../../redux/reducers/blogsReducer";
+import {
+    deleteBlog,
+    setCurrentId,
+    setCurrentMessage,
+    setOpenSettings,
+    setShowDialog
+} from "../../../redux/reducers/blogsReducer";
 
 const mapStateToProps = (state) => {
     return {
@@ -10,5 +16,9 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-    deleteBlog
+    deleteBlog,
+    setShowDialog,
+    setOpenSettings,
+    setCurrentMessage,
+    setCurrentId
 })(BlogList);

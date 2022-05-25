@@ -7,6 +7,10 @@ import settings from "../../../../assects/settings.png";
 const Blog = (props) => {
     const [username, setUsername] = useState(null);
 
+    let [day, time] = props.createdAt.split("T");
+    time = time.split(".")[0];
+    const createdAt = day + " " + time;
+
     useEffect(() => {
         AppAPI.getUser(props.userId).then(response => {
             setUsername(response.data.username);
@@ -17,6 +21,13 @@ const Blog = (props) => {
         props.deleteBlog(props.id);
     }
 
+    const openSettingsBlog = () => {
+        props.setShowDialog(true);
+        props.setCurrentMessage(props.message);
+        props.setOpenSettings(true);
+        props.setCurrentId(props.id);
+    }
+
     return (
         <div className={styles.content}>
             <div className={styles.header}>
@@ -24,9 +35,9 @@ const Blog = (props) => {
                     <span>{username}</span>
                 </div>
                 <div className={styles.rightSection}>
-                    <span>{props.createdAt}</span>
+                    <span>{createdAt}</span>
                     <img style={props.isMyBlog ? null : {display: "none"}}
-                         onClick={() => deleteBlog()}
+                         onClick={() => openSettingsBlog()}
                          src={settings} alt="Blog settings"/>
                     <img style={props.isMyBlog ? null : {display: "none"}}
                          onClick={() => deleteBlog()}

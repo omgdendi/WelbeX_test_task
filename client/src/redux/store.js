@@ -5,7 +5,7 @@ import blogsReducer from "./reducers/blogsReducer";
 
 const reducers = combineReducers({
     auth: authReducer,
-    blogs: blogsReducer
+    blogs: blogsReducer,
 });
 
 const store = createStore(reducers, applyMiddleware(thunk));

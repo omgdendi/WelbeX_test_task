@@ -11,6 +11,20 @@ const $api = axios.create({
     }
 });
 
+export const $apiFile = axios.create({
+    withCredentials: true,
+    baseURL: API_URL,
+    headers: {
+        'Content-Type': 'multipart/form-data',
+        'Accept': 'multipart/form-data',
+    }
+});
+
+$apiFile.interceptors.request.use((config) => {
+    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+    return config;
+})
+
 $api.interceptors.request.use((config) => {
     config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
     return config;

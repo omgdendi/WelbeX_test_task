@@ -37,6 +37,15 @@ const blogRouter = new Router();
  *         createdAt: 2022-05-24T13:38:29.090Z
  *         img: a8d6759d-9031-404c-9f51-857c60daa21c.jpg
  *         video: bff4964f-3a2f-4ec6-bf9d-1e4f879fb824.mp4
+ *     BlogDto:
+ *       type: object
+ *       properties:
+ *         message:
+ *           type: string
+ *           description: The blog message
+ *       example:
+ *         message: hello world!
+ *
  */
 
 /**
@@ -57,7 +66,18 @@ const blogRouter = new Router();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Blog'
+ *             $ref: '#/components/schemas/BlogDto'
+ *     consumes:
+ *       - multipart/form-data
+ *     parameters:
+ *       - in: formData
+ *         name: img
+ *         type: file
+ *         description: The image file to upload
+ *       - in: formData
+ *         name: video
+ *         type: file
+ *         description: The video file to upload
  *     responses:
  *       200:
  *         description: The blog was successfully created
@@ -141,12 +161,20 @@ blogRouter.delete('/blogs/:id', authMiddleware, BlogController.delete);
  *          type: string
  *        required: true
  *        description: The blog id
+ *      - in: formData
+ *        name: img
+ *        type: file
+ *        description: The image file to upload
+ *      - in: formData
+ *        name: video
+ *        type: file
+ *        description: The video file to upload
  *    requestBody:
  *      required: true
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/Blog'
+ *            $ref: '#/components/schemas/BlogDto'
  *    responses:
  *      200:
  *        description: The blog was updated

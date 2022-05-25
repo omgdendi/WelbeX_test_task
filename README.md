@@ -3,13 +3,15 @@ test task for WelbeX
 
 **Приложение**
 
-http://185.188.147.253:3000/ - приложение
-http://185.188.147.253:8080/api-docs/#/ - swagger
+http://185.188.147.253:3000/ - приложение. 
+http://185.188.147.253:8080/api-docs/#/ - swagger. 
+
+можно зайти под пользователем user, пароль - 123.  
 
 **Используемый стек:** 
 
-backend: Express js, Postgresql, Sequalize, Swagger; 
-frontend: React, Redux, Axios;
+backend: Express js, Postgresql, Sequalize, Swagger. 
+frontend: React, Redux, Axios. 
 
 **Требования к заданию:**
 

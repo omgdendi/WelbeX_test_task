@@ -5,23 +5,34 @@ import styles from "./BlogList.module.scss";
 const BlogList = (props) => {
     return (
         <section>
-            <div className={styles.myPosts}>
+            <div>
                 <div className={styles.name}>
                     <span>Мои посты</span>
                 </div>
-                {props.blogs.map(blog => <Blog message={blog?.message} createdAt={blog.createdAt} userId={blog.author}
-                                               img={blog.img} video={blog.video}/>)}
+                {props.blogs.filter(blog => blog.author === props.user.id).map(blog => <Blog key={blog.id}
+                                                                                         id={blog.id}
+                                                                                         message={blog?.message}
+                                                                                         createdAt={blog.createdAt}
+                                                                                         userId={blog.author}
+                                                                                         img={blog.img}
+                                                                                         video={blog.video}
+                                                                                         deleteBlog={props.deleteBlog}
+                                                                                         isMyBlog={true}
+                />)}
             </div>
-            <div className={styles.notMyPosts}>
+            <div>
                 <div className={styles.name}>
                     <span>Чужие посты</span>
                 </div>
-                {props.blogs.filter(blog => blog.id === props.user.id).map(blog => <Blog key={blog.id}
+                {props.blogs.filter(blog => blog.author !== props.user.id).map(blog => <Blog key={blog.id}
+                                                                                         id={blog.id}
                                                                                          message={blog.message}
                                                                                          createdAt={blog.createdAt}
                                                                                          userId={blog.author}
                                                                                          img={blog.img}
-                                                                                         video={blog.video}/>)}
+                                                                                         video={blog.video}
+                                                                                         isMyBlog={false}
+                />)}
             </div>
         </section>
     );

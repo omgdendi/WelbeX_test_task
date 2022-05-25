@@ -11,7 +11,7 @@ const Header = (props) => {
                      onClick={() => props.logout()} className={styles.exit} alt="exit"/>
             </Link>
             <span className={props.isAuth ? styles.name : styles.nameWithoutAuth}>
-                Test task for WelbeX
+                Тестовое задание для WelbeX
             </span>
         </header>
     );

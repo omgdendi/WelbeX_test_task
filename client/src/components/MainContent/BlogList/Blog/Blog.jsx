@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {AppAPI} from "../../../../api/AppAPI";
 import styles from "./Blog.module.scss";
+import basket from "../../../../assects/basket.png";
+import settings from "../../../../assects/settings.png";
 
 const Blog = (props) => {
     const [username, setUsername] = useState(null);
@@ -11,6 +13,9 @@ const Blog = (props) => {
         })
     }, [])
 
+    const deleteBlog = () => {
+        props.deleteBlog(props.id);
+    }
 
     return (
         <div className={styles.content}>
@@ -18,20 +23,33 @@ const Blog = (props) => {
                 <div>
                     <span>{username}</span>
                 </div>
-                <div>
+                <div className={styles.rightSection}>
                     <span>{props.createdAt}</span>
+                    <img style={props.isMyBlog ? null : {display: "none"}}
+                         onClick={() => deleteBlog()}
+                         src={settings} alt="Blog settings"/>
+                    <img style={props.isMyBlog ? null : {display: "none"}}
+                         onClick={() => deleteBlog()}
+                         src={basket} alt="delete basket"/>
                 </div>
             </div>
             <div className={styles.main}>
                 <div className={styles.message} style={props.message ? {display: "block"} : {display: "none"}}>
                     <span>{props.message}</span>
                 </div>
-                <div className={styles.img} style={props.img ? {display: "block"} : {display: "none"}}>
-                    <img src={"http://localhost:8080/" + props.img} alt="image"/>
-                </div>
-                <video className={styles.video} width={300} style={props.video ? null : {display: "none"}}>
-                    <source src="http://localhost:8080/2e7a2289-4cf6-4ec9-aa21-efb83fb505ca.mp4" type="video/mp4"/>
-                </video>
+                {props.img
+                    ? <div className={styles.img}>
+                        <img src={"http://localhost:8080/" + props.img} alt="image"/>
+                    </div>
+                    : null
+                }
+                {props.video
+                    ? <video className={styles.video} width={300}>
+                        <source src={"http://localhost:8080/" + props.video} type="video/mp4"/>
+                    </video>
+                    : null
+                }
+
             </div>
         </div>
     );

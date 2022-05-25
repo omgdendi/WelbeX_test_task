@@ -65,7 +65,7 @@ export const getBlogs = () => (dispatch) => {
         })
 }
 
-export const deleteDote = (id) => (dispatch) => {
+export const deleteBlog = (id) => (dispatch) => {
     BlogAPI.deleteBlog(id)
         .then(response => {
             if (response.status === 200) {

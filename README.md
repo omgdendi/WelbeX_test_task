@@ -1,6 +1,11 @@
 # WelbeX_test_task
 test task for WelbeX
 
+**Приложение**
+
+http://185.188.147.253:3000/ - приложение
+http://185.188.147.253:8080/api-docs/#/ - swagger
+
 **Используемый стек:** 
 
 backend: Express js, Postgresql, Sequalize, Swagger; 

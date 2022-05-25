@@ -86,7 +86,15 @@ class BlogService {
                 fs.unlinkSync("main/static/video/" + blog.video);
             }
         }
-        await BlogModel.update({message, img: imageFileName, video: videoFileName}, {where: {id}});
+        if (imageFileName && videoFileName) {
+            await BlogModel.update({message, img: imageFileName, video: videoFileName}, {where: {id}});
+        } else if (imageFileName) {
+            await BlogModel.update({message, img: imageFileName}, {where: {id}});
+        } else if (videoFileName) {
+            await BlogModel.update({message, video: videoFileName}, {where: {id}});
+        } else {
+            await BlogModel.update({message}, {where: {id}});
+        }
         const blogDto = new BlogDTO(blog);
         return blogDto;
     }
